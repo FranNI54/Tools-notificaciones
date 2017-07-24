@@ -19,11 +19,7 @@ class User extends MY_Controller
 	{
 		parent::__construct();
 
-		// Force SSL
-		//$this->force_ssl();
 
-		// Form and URL helpers always loaded (just for convenience)
-		
 		$this->load->helper('auth');
 		$this->load->model('examples/examples_model');
 		$this->load->helper('url');
@@ -194,12 +190,9 @@ class User extends MY_Controller
 	public function create_user()
 	{
 		// Customize this array for your user
-		$user_data = [
-			'username'   => 'fran',
-			'passwd'     => 'Stalker03936',
-			'email'      => 'fran@ni54.com',
-			'auth_level' => '9', // 9 if you want to login @ examples/index.
-		];
+		/*$user_data = [
+			
+		];*/
 
 		$this->is_logged_in();
 
@@ -281,7 +274,7 @@ class User extends MY_Controller
 	public function create(){
 		$this->require_min_level(9);
 		
-		// Customize this array for your user
+
 		$this->load->helper(array('form'));
 				$this->load->helper('auth');
 		
@@ -293,12 +286,6 @@ class User extends MY_Controller
 		unset($_POST["token"]);
 		if(isset($_POST)){
 			$user_data= $_POST;
-			/*foreach($_POST as $k=>$value){
-				echo $k;
-				echo "<br>";
-				echo $value;
-				echo "<br>";
-			}*/
 		}
 		
 		$this->form_validation->set_data( $user_data );
@@ -463,7 +450,7 @@ class User extends MY_Controller
 			if($_POST["passwd"]!=""&&$_POST["passwd"]!="Password123"){
 				$user_data['passwd']     = $this->authentication->hash_passwd($_POST['passwd']);
 			}else{
-				//$user_data['passwd']= $data['user']["passwd"];
+				
 				unset($user_data["passwd"]);
 			}
 			
@@ -475,10 +462,7 @@ class User extends MY_Controller
 			}
 			
 			$usuario= $this->examples_model->byName($user_data["username"]);
-			/*echo $usuario["user_id"];
-			echo "<br>";
-			echo $id;
-			exit();*/
+			
 			if(isset($usuario)&&$usuario!=""&&$usuario['user_id']!=""&&$usuario["user_id"]!=$id){
 				
 				if(count($user_data)<=1){

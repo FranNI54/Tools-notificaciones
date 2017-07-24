@@ -48,8 +48,6 @@ class Marquesina_model extends CI_Model {
 		public function insert_entry($model)
         {
 				
-				//echo $this->exist($model);
-				//exit();
 				if($this->exist($model)){
 					return "duplicado";
 				}

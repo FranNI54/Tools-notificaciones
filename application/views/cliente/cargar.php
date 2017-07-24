@@ -67,9 +67,7 @@ Dropzone.options.uploader = {
 		if($("thead tr th:nth-child(2)").length>0){
 			$("thead tr th:nth-child(2)").html("Nombre");
 		}
-		/*if($("thead tr th:nth-child(3)").length>0){
-			$("thead tr th:nth-child(3)").html("Estado");
-		}*/
+
 		if($("thead tr th:nth-child(3)").length>0){
 			$("thead tr th:nth-child(3)").html("Suscripción");
 		}
@@ -77,7 +75,7 @@ Dropzone.options.uploader = {
 		successTable=response["success"];
 		$("#tablaErrores").val(response["error"]);
 		$("#formErrores").show();
-			//aqui deberia de crear/reemplazar la tabala
+
 		$("#grupo-container").show();
 			
 	});

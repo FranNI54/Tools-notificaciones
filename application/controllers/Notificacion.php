@@ -87,9 +87,6 @@ class Notificacion extends MY_Controller {
 			$data = trim($url);
 			$data = stripslashes($url);
 			$data = htmlspecialchars($url);
-		
-
-
 		 
 			if (!preg_match("/\b(?:(?:https?|ftp))[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
 				return FALSE;
@@ -180,10 +177,6 @@ class Notificacion extends MY_Controller {
 			$this->load->view('templates/footer');
 		}
 		
-		/*public function delete($id){
-			$this->require_min_level(1);
-			echo $this->notificacion_model->delete($id);
-		}*/
 		
 		public function admin(){
 			$this->require_min_level(1);

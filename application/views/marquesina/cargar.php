@@ -56,11 +56,6 @@ Dropzone.options.uploader = {
                 });
 	this.on("success", function(file,response,event){
 		console.log(response);
-		//agregar a todos los complete un attr con time
-		//en interval se va disminuyendo en 1
-		//comienza en 3
-		//en 0 borra elementos
-		//console.log(file.previewElement.innerHTML);
 		response=JSON.parse(response);
 		$("#imagenesMarquesina").append("<div class='preview' imageId='"+response.id+"' orden='"+response.orden+"' >"+file.previewElement.innerHTML+"<br><div class='delete' >Borrar</div></div>");
 
@@ -89,7 +84,7 @@ Dropzone.options.uploader = {
 
 function AddTimer(){
 	$(".dz-success").each(function(){
-		//console.log($(this).attr("timer"));
+		
 		if($(this).attr("timer")==null){
 			$(this).attr("timer",4);
 		}
@@ -100,7 +95,7 @@ setInterval(function(){CheckCompletes();},1000);
 
 function CheckCompletes(){
 	$(".dz-success").each(function(){
-		//console.log($(this).attr("timer"));
+		
 		if($(this).attr("timer")==null){
 			$(this).attr("timer",4);
 		}else{

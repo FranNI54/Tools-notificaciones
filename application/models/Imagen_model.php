@@ -38,8 +38,6 @@ class Imagen_model extends CI_Model {
 				$this->db->order_by('orden', 'DESC');
 				$this->db->where('marquesina', $model["marquesina"]);
 				$query= $this->db->get('imagen'); 
-				//$orden=$query->row_array()["orden"]+1;
-				//$this->orden=$orden;
 				
                 $toReturn= $this->db->insert('imagen', $this);
 				if($toReturn){

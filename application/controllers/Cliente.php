@@ -13,38 +13,6 @@ class Cliente extends MY_Controller {
 		public function index(){
 			redirect('/cliente/admin');
 		}
-
-      
-		/*
-		public function create($id= FALSE)
-		{
-			$this->load->helper(array('form'));
-			$this->load->library('form_validation');
-			
-			$data["title"]="Crear Cliente";
-			$data["sidebar"]="sidebar-n";
-			$this->form_validation->set_rules('numero', 'Numero de cliente', 'required');			
-			
-			if ($this->form_validation->run() == FALSE)
-			{
-				$data["cliente"]=$_POST;
-				$this->load->view('templates/header', $data);
-				$this->load->view('cliente/create', $data);
-				$this->load->view('templates/footer');
-			}
-			else
-			{
-				unset($_POST["token"]);
-				if($this->cliente_model->insert_entry($_POST)){
-					 redirect('/cliente/view/'.$this->cliente_model->id, 'refresh');
-				}else{
-					$this->load->view('templates/header', $data);
-					$this->load->view('cliente/create', $data);
-					$this->load->view('templates/footer');
-				}
-				
-			}
-		}*/
 		
 		public function update($id)
 		{
@@ -144,15 +112,10 @@ class Cliente extends MY_Controller {
 			$this->load->model('suscripcion_model');
 			$tmpName = $_FILES['file']['tmp_name'];
 			$csvAsArray = array_map('str_getcsv', file($tmpName));
-			//var_dump($csvAsArray);
+
 			$clientes= array();
 			$error= array();
 			$success= array();
-			/*$clientes[0]=array();
-			$aux=0;
-			foreach( $csvAsArray as $key=>$value){
-				array_push($clientes[0],$aux++);
-			}*/
 			foreach( $csvAsArray as $key=>$value){
 				$auxArray= array();
 				foreach($value as $key2=>$value2){
@@ -168,7 +131,7 @@ class Cliente extends MY_Controller {
 				if($auxCliente){
 					
 					 array_push($auxArray,$auxCliente["CUST_NAME"]);
-					 //array_push($auxArray,$auxCliente["STATUS_NO"]);
+
 					 $suscripcion= $this->suscripcion_model->all($auxCliente["DEVICEID"]);
 					 if($suscripcion){
 						 array_push($success,$auxCliente["CUST_NO"]);
@@ -180,24 +143,20 @@ class Cliente extends MY_Controller {
 				}else{
 					array_push($error,$auxArray[0]);
 					array_push($auxArray,"Inexistente");
-					//array_push($auxArray,"");
+
 					array_push($auxArray,"");
 				}
 				array_push($clientes,$auxArray);
 			}
 			
-			
-			//echo json_encode($csvAsArray);
-			//echo $this->build_table($csvAsArray);
-			//echo json_encode(array("data"=>$csvAsArray,"table"=>$this->build_table($csvAsArray)));
 			echo json_encode(array("data"=>$clientes,"table"=>$this->build_table($clientes),"error"=>$error,"success"=>$success));
 			exit();
 		}
 		
 		function build_table($array){
-			// start table
+
 			$html = '<table>';
-			// header row
+
 			$html .= '<thead><tr>';
 			foreach($array[0] as $key=>$value){
 					$key=$this->limpiarKey($key);
@@ -205,7 +164,7 @@ class Cliente extends MY_Controller {
 				}
 			$html .= '</tr></thead>';
 
-			// data rows
+
 			$html.="<tbody>";
 			
 			foreach( $array as $key=>$value){
@@ -224,7 +183,7 @@ class Cliente extends MY_Controller {
 			}
 			$html.="</tbody>";
 
-			// finish table and return it
+
 
 			$html .= '</table>';
 			return $html;
@@ -269,8 +228,6 @@ class Cliente extends MY_Controller {
 			$json= json_decode($_POST["json"]);
 			
 			$json=$this->cliente_model->filter($json);
-			//var_dump($json);
-			//exit();
 			if(count($json)==0){
 				echo "";
 			}else{
@@ -327,7 +284,6 @@ class Cliente extends MY_Controller {
 			}else{
 				$name = 'errores-import-'.date("d-m-Y H-i").'.csv';
 			}
-			// Build the headers to push out the file properly.
 			
 			if(isset($_POST["name"])){
 				fclose($fp);
@@ -366,28 +322,6 @@ class Cliente extends MY_Controller {
 		public function upload(){
 			if(isset($_POST["json"])){
 				$clientes=json_decode($_POST["json"]);
-				
-				//$index=0;
-				//$ids= array();
-				/*foreach($clientes as $cliente){
-					$index++;
-					$auxCliente;
-					for($a=0;$a<count($cliente);$a++){
-						$auxCliente[$orden[$a]]= $cliente[$a];
-						if($orden[$a]=="tipo"){
-							if(strtolower($cliente[$a])=="tienda"){
-								$auxCliente[$orden[$a]]=1;
-							}else{
-								$auxCliente[$orden[$a]]=0;
-							}
-						}
-					}
-					if(!$this->cliente_model->insert_entry($auxCliente)){
-						echo "Error al ingresar fila ".$index." del csv.<br>";
-					}else{
-						array_push($ids,$this->cliente_model->id);
-					}
-				}*/
 				if(isset($_POST["grupo"])&&$_POST["grupo"]>0){
 					
 					$this->load->model('relGrupo_model');
@@ -395,7 +329,7 @@ class Cliente extends MY_Controller {
 					foreach($clientes as $cliente){
 						
 						$auxCliente= $this->cliente_model->all($cliente);
-						//$auxCliente['hash']=$this->cliente_model->getHash($auxCliente["CUST_NO"]);
+
 						$suscripciones=$this->cliente_model->getHash($auxCliente["CUST_NO"]);
 						foreach($suscripciones as $suscripcion){
 							if(isset($suscripcion["TOKEN_ID"])){

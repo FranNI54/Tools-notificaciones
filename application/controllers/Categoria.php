@@ -82,11 +82,6 @@ class Categoria extends MY_Controller {
 		}
 		
 		public function admin(){
-			/*if($this->auth_level==9){
-				redirect('/categoria/admin' );
-			}else{
-				redirect('/marquesina/admin' );
-			}*/
 			$this->require_min_level(9);
 			$data["categorias"]= $this->categoria_model->all();
 			$data["title"]= "Administrar Categorías";
@@ -119,9 +114,6 @@ class Categoria extends MY_Controller {
 		}
 		
 		public function setVigente($app= FALSE){
-			//date_default_timezone_set('America/Argentina/Buenos_Aires');
-			//echo date('Y-m-d H:i:s', time());
-			//echo "<hr>";
 			if($app){
 				$this->require_min_level(1);
 			}

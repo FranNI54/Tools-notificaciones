@@ -26,9 +26,7 @@ class ClienteHash_model extends CI_Model {
 				(
 					
 					   "operation"=> "create",
-					   //nombre de grupo colapsado y limpiado
 					   "notification_key_name"=> "makro-group-".$id,
-					   //aqui va el hash del user
 					   "registration_ids"=> $hashs
 					
 				);
@@ -63,10 +61,8 @@ class ClienteHash_model extends CI_Model {
 				(
 					
 					   "operation"=> "add",
-				   //nombre de grupo colapsado y limpiado
 				   "notification_key_name"=> "makro-group-".$id,
 				   "notification_key"=> $hash,
-				   //aqui va el hash del user
 				   "registration_ids"=> $hashs
 					
 				);
@@ -114,9 +110,6 @@ class ClienteHash_model extends CI_Model {
 			$this->db->where('DEVICE_ID', $id);
 			$this->db->delete("cap_subscribers");
 		}
-		
-		
-		
 		
 		
 }

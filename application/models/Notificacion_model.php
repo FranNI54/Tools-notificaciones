@@ -108,11 +108,7 @@ class Notificacion_model extends CI_Model {
 					$destino= $destinos[0];
 				}
 			}
-			#API access key from Google API's Console
 			
-			//RelNotificacion_model
-			
-			#prep the bundle
 			
 			$msg = array
 				  (
@@ -134,7 +130,7 @@ class Notificacion_model extends CI_Model {
 						'Authorization: key=' . API_ACCESS_KEY,
 						'Content-Type: application/json'
 					);
-			#Send Reponse To FireBase Server	
+			
 				$ch = curl_init();
 				curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
 				curl_setopt( $ch,CURLOPT_POST, true );
@@ -144,7 +140,7 @@ class Notificacion_model extends CI_Model {
 				curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 				$result = curl_exec($ch );
 				curl_close( $ch );
-			#Echo Result Of FireBase Server
+			
 			
 			if($notificacion["grupo"]==1){
 				$this->load->model('relGrupo_model');
@@ -195,7 +191,6 @@ class Notificacion_model extends CI_Model {
 					}
 					$response.="</h5>";
 					
-					//$response.=$auxR;
 					$response.="<br>";
 					
 					

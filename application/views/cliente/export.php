@@ -119,8 +119,6 @@
 				auxObj[$(this).attr("id")]= new Array();
 			});
 			$(".listado-checks input").each(function(){
-				//console.log($(this).attr("name"));
-				//console.log($(this).parent().parent().attr("id"));
 				if(this.checked){
 				auxObj[$(this).parent().parent().attr("id")].push($(this).attr("name"));
 				}
@@ -176,7 +174,7 @@
 		});
 		
 		$("body").on("click","[name=todas]",function(){
-			//console.log(this.checked);
+
 			$(this).parent().parent().find("input").prop('checked', this.checked);
 		});
 	});

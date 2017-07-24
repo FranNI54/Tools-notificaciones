@@ -71,10 +71,7 @@ class Marquesina extends MY_Controller {
 				$data["marquesina"]=$this->marquesina_model->all($id);
 			
 			$data["categorias"]= $this->categoria_model->all();
-			//if(isset($_POST["nombre"])){
-				//$this->marquesina_model->insert_entry($_POST);
-			//}
-			//$this->form_validation->set_rules('nombre', 'Nombre', 'required');
+
 			$this->form_validation->set_rules('categoria', 'Categoría', 'integer|required');
 			$this->form_validation->set_rules('inicio', 'Inicio', 'required');
 			
@@ -125,9 +122,9 @@ class Marquesina extends MY_Controller {
 		}
 		
 		public function upload(){
-			$ds          = DIRECTORY_SEPARATOR;  //1
+			$ds          = DIRECTORY_SEPARATOR;  
 
-			//$storeFolder = base_url().'uploads';   //2
+			
 
 			if (!empty($_FILES)) {
 				 
@@ -137,19 +134,19 @@ class Marquesina extends MY_Controller {
 				$model=array("formato"=>$formato,"marquesina"=>$_POST["marquesina"],"orden"=>$_POST["orden"]);
 				$this->imagen_model->insert_entry($model);
 				
-				$tempFile = $_FILES['file']['tmp_name'];          //3             
+				$tempFile = $_FILES['file']['tmp_name'];          
 				
-				//$targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;  //4
-				$targetPath =  FCPATH.'uploads/'.$_POST["marquesina"]."/";   //2;  //4
+				
+				$targetPath =  FCPATH.'uploads/'.$_POST["marquesina"]."/"; 
 				
 				if(!is_dir($targetPath)){
 					mkdir ($targetPath);
 				}
 				
 				
-				$targetFile =  $targetPath. $this->imagen_model->id.$formato;  //5
+				$targetFile =  $targetPath. $this->imagen_model->id.$formato; 
 				
-				move_uploaded_file($tempFile,$targetFile); //6
+				move_uploaded_file($tempFile,$targetFile); 
 				echo json_encode(array("id"=>$this->imagen_model->id,"orden"=>$this->imagen_model->orden));
 				$this->marquesina_model->setJson($_POST["marquesina"]);
 			}

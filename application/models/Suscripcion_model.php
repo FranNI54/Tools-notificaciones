@@ -45,7 +45,7 @@ class Suscripcion_model extends CI_Model {
 		
 		public function updateHash($id){
 			$model=$this->all($id);
-			//llamada service
+
 			$model["hash"]=	"cu6ePENV_3Q:APA91bFUvKj0z8fmaxDZMGZhF0ZHuRM9IfKU_v5xlOgNzBIONj3vAKKuS_eHEUPUVklQDpc3t6X8ajGKZ_qZmXYMcjhhdbwKS3Y-fVgxQQCoUDkQMFbwf1PNmK32xlW9OI27Aqg6t3kn";
 			$this->db->set("hash", "cu6ePENV_3Q:APA91bFUvKj0z8fmaxDZMGZhF0ZHuRM9IfKU_v5xlOgNzBIONj3vAKKuS_eHEUPUVklQDpc3t6X8ajGKZ_qZmXYMcjhhdbwKS3Y-fVgxQQCoUDkQMFbwf1PNmK32xlW9OI27Aqg6t3kn");
 			$this->db->where('id', $id);

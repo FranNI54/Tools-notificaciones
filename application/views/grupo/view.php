@@ -226,9 +226,7 @@ Dropzone.options.uploader = {
 		if($("thead tr th:nth-child(2)").length>0){
 			$("thead tr th:nth-child(2)").html("Nombre");
 		}
-		/*if($("thead tr th:nth-child(3)").length>0){
-			$("thead tr th:nth-child(3)").html("Estado");
-		}*/
+		
 		if($("thead tr th:nth-child(3)").length>0){
 			$("thead tr th:nth-child(3)").html("Suscripción");
 		}
@@ -245,7 +243,7 @@ Dropzone.options.uploader = {
 		$("#formErrores .save").show();
 		
 		$("#formErrores").css("display","inline-block");
-			//aqui deberia de crear/reemplazar la tabala
+			
 		$("#grupo-container").show();
 		
 		CenterToParent();
@@ -283,10 +281,10 @@ $("body").on("click",".save",function(){
 			CenterToParent();
 		}else{
 			$("#table-container").html("<p style='color:green;'>Cargados con éxito</p>");
-			//actualizar tabla
+			
 			CenterToParent();
 			setTimeout(function(){
-				//$("#carga-clientes").hide();
+				
 				location.reload();
 			},1500);
 		}
@@ -294,7 +292,7 @@ $("body").on("click",".save",function(){
 });
 
 $(document).keyup(function(e) {
-     if (e.keyCode == 27) { // escape key maps to keycode `27`
+     if (e.keyCode == 27) { 
         $("#carga-clientes").hide();
     }
 });
@@ -309,10 +307,10 @@ function CenterToParent(){
 	$(".modal-clientes").each(function(){
 		$(this).css("margin-top",0);
 		$(this).css("margin-bottom",0);
-		//$(this).css("padding-bottom",0);
-		//$(this).css("padding-top",0);
+		
+		
 		var parent= $(this).parent();
-		//console.log($(this).outerHeight());
+		
 		if($(this).outerHeight()>0){
 			var paddingTop= ($(parent).innerHeight()/2)-($(this).outerHeight()/2);
 			$(this).css("margin-top",paddingTop+"px");

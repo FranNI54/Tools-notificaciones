@@ -15,16 +15,12 @@ class Cliente_model extends CI_Model {
 					return $query->result_array();
 			}
 			$this->db->where('CUST_NO', $id);
-			//$this->db->where('STATUS_NO', 1);
+
 			$query = $this->db->get('CAP_CUSTOMERS');
 			return $query->row_array();
 		}
 		
 		public function filter($filter){
-		/*SELECT *
-FROM Orders
-LEFT JOIN OrderLines ON OrderLines.OrderID=Orders.ID
-WHERE Orders.ID = 12345*/
 
 
 			if(count($filter->tipo)>0){
@@ -42,19 +38,16 @@ WHERE Orders.ID = 12345*/
 				
 				$this->db->select($filter->columna);
 			}
-			//$this->db->select("nvs.TS");
+
 			
 			$this->db->select("date_format(CAP_SUBSCRIBERS.TS, '%d/%m/%Y %k:%i') TS");
 			
 			$this->db->join('CAP_CUSTOMERS', "CAP_CUSTOMERS ON CAP_SUBSCRIBERS.DEVICE_ID = CAP_CUSTOMERS.DEVICEID", 'inner');
 			$this->db->where('CAP_SUBSCRIBERS.TS >',  $filter->fecha);
-			//$this->db->where('CUST_NO', $id);
-			//$this->db->where('STATUS_NO', 1);
+
 			$query = $this->db->get('CAP_SUBSCRIBERS');
 			return $query->result_array();
-			/*$this->db->where('TS >',  $filter->fecha);
-			$query = $this->db->get('CAP_SUBSCRIBERS');
-			return $query->result_array();*/
+
 		}
 		
 		public function byPassport($id = FALSE)
@@ -87,18 +80,6 @@ WHERE Orders.ID = 12345*/
 			return $query->row_array();
 		}
 	
-				
-		/*public function insert_entry($model)
-        {
-				$this->db->set($model);
-				
-                $toReturn= $this->db->insert('CAP_CUSTOMERS');
-				if($toReturn){
-					$this->id= $this->db->insert_id();
-				}
-				
-				return $toReturn;
-        }*/
 		
 		public function update_entry($nData)
         {

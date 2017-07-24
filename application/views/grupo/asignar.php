@@ -34,7 +34,7 @@ foreach($clientes as $cliente){
 	</tr>
 	<?php
 	}else{
-		?><script>//console.log("ya esta puestoo");</script><?php 
+		?><?php 
 	}
 }
 
@@ -54,7 +54,7 @@ $(document).ready(function(){
 } );
 	$("[type='search']").attr("placeholder","Búsqueda");
 	table.on('search.dt', function() {
-    //number of filtered rows
+
     
 	
 	}); 
@@ -84,9 +84,7 @@ jQuery(document).on('click','.delete',function() {
 });
 
 function Marcar(){
-	//console.log(table.rows( { filter : 'applied'} ).nodes().length);
-    //filtered rows data as arrays
-    //console.log(table.rows( { filter : 'applied'} ).data()); 
+
  var auxFilter=table.rows( { filter : 'applied'} ).data();
  var indexes=table.rows( { filter : 'applied'} ).indexes();
 	
@@ -99,16 +97,11 @@ function Marcar(){
 }
 
 function DesMarcar(){
-	//console.log(table.rows( { filter : 'applied'} ).nodes().length);
-    //filtered rows data as arrays
-    //console.log(table.rows( { filter : 'applied'} ).data()); 
- var auxFilter=table.rows( { filter : 'applied'} ).data();
+var auxFilter=table.rows( { filter : 'applied'} ).data();
  var indexes=table.rows( { filter : 'applied'} ).indexes();
 	
 	$.each(auxFilter,function(index){
 		$(table.row( indexes[index]).node()).removeClass("active");
-		//console.log(this[0]);
-		//console.log(this[$]);
 	});
 	console.log(auxFilter);
 }

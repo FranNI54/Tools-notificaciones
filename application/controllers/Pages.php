@@ -9,22 +9,12 @@ class Pages extends MY_Controller {
         }
 		
 		public function index($page="home"){
-			echo "asd";
+			
 		}
 		
 		 public function view($page="home"){
 			redirect('/marquesina/admin' );
 		 }
 		 
-		/* function _remap($method_name = 'index'){
-
-             if(!method_exists($this, $method_name)){
-                $this->index($method_name);
-             }
-             else{
-                $this->{$method_name}();
-             }
-         }*/
-
 
 }
