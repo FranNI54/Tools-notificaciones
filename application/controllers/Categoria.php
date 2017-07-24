@@ -147,6 +147,8 @@ class Categoria extends MY_Controller {
 				$html.= "<h4>".$categoria["nombre"].": ";
 				}
 				if($marquesina==null){
+					$categoria["actual"]= null;
+					$this->categoria_model->update_entry($categoria);
 					if($trace){
 					$html.= "vacia</h4>";
 					$html.= "<hr>";

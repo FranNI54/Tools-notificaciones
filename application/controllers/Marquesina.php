@@ -174,7 +174,22 @@ class Marquesina extends MY_Controller {
 		}
 		
 		public function delete($id){
+			$this->load->model('categoria_model');
+			$categoria=$this->categoria_model->all($this->marquesina_model->all($id)["categoria"]);
 			echo $this->marquesina_model->delete($id);
+			
+			$marquesina=$this->marquesina_model->getNearer($categoria["id"]);
+				
+				if($marquesina==null){
+					$categoria["actual"]= null;
+					$this->categoria_model->update_entry($categoria);
+				}else {
+					if($marquesina["id"]!=$categoria["actual"]){
+						
+						$categoria["actual"]= $marquesina["id"];
+						$this->categoria_model->update_entry($categoria);
+					}
+				}
 		}
 		
 		public function deleteImagen($id){

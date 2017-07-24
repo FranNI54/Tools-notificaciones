@@ -1,4 +1,7 @@
 <?php echo validation_errors(); ?>
+<?php if(isset($errorUser)&&$errorUser!=""){?> 
+<p><strong>Nombre de usuario ya en uso.</strong></p>
+<?php } ?>
 
 <?php echo form_open('user/update/'.$id); ?>
 	<div class="form-group">

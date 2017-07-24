@@ -58,14 +58,15 @@ jQuery(document).on('click','.delete',function() {
 	$(".loading").show();
 	var row=this;
 	
-	$.post( $(this).attr('href'), function( data ) {
-		console.log("borrado");
+	$.post( $(this).attr('href'),{'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'}, function( data ) {
+		location.reload();
+		/*console.log("borrado");
 		 table
         .row( $(row).parents('tr') )
         .remove()
         .draw();
 		$(".loading").hide();
-		
+		*/
 	});
 	
 });

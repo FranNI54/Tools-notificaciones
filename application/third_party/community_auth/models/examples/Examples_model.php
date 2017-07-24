@@ -68,6 +68,21 @@ class Examples_model extends MY_Model {
 
 		return FALSE;
 	}
+	
+	public function byName( $id=False )
+	{
+		
+		$query = $this->db->select( '*' )
+			->from( $this->db_table('user_table') . ' u' )
+			->where( 'username =', $id )
+			->limit(1)
+			->get();
+
+		if( $query->num_rows() == 1 )
+			return $query->row_array();
+
+		return FALSE;
+	}
 
 	// --------------------------------------------------------------
 

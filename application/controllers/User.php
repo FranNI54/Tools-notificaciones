@@ -473,9 +473,28 @@ class User extends MY_Controller
 			{
 				$user_data['username'] = NULL;
 			}
-			//$user_data["id"]=$id;
-			//$this->db->set($user_data)
-				//->insert(db_table('user_table'));
+			
+			$usuario= $this->examples_model->byName($user_data["username"]);
+			/*echo $usuario["user_id"];
+			echo "<br>";
+			echo $id;
+			exit();*/
+			if(isset($usuario)&&$usuario!=""&&$usuario['user_id']!=""&&$usuario["user_id"]!=$id){
+				
+				if(count($user_data)<=1){
+					$data["user"]["passwd"]="Password123";
+				}else{
+					$data["user"]=$user_data;
+				}
+				$data["id"]=$id;
+				$data["errorUser"]= "repetido";
+				$this->load->view('templates/header', $data);
+				$this->load->view('user/update', $data);
+				$this->load->view('templates/footer');
+				return;
+				
+			}
+				
 			$this->examples_model->update_user_raw_data(
 							$id,
 							$user_data

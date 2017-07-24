@@ -129,14 +129,17 @@
 			console.log(auxObj);
 			$("#filtros").hide();
 			$("#volver-filtro").show();
-			$("#guardar").show();
+			
 			$("#table-container").html("<h3>Cargando...</h3>");
 			$("#table-container").show();
 			$.post('<?php echo base_url(); ?>cliente/filter',{json:JSON.stringify(auxObj),'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},function(response,data){
 				if(response==""){
 					$("#table-container").html("<h4>No se han encontrado resultados con esos parametros.</h4>");
+					$("#guardar").hide();
+					
 					return;
 				}
+				$("#guardar").show();
 				response=JSON.parse(response);
 				currentData=response["data"];
 				$("#tablaErrores").val(JSON.stringify(response["data"]));
